@@ -32,6 +32,8 @@ struct Card {
     in_booster: bool,
     /// The rarity of the card, seen as the color of the set symbol on the right side of the type field of the card.
     rarity: Rarity,
+    /// (Optional) price of the card.
+    price: Option<Price>,
 }
 
 impl Card {
@@ -59,6 +61,14 @@ struct Set {
     card_count: u32,
     /// The date that the set was released.
     release_date: NaiveDate,
+}
+
+/// The price of a card.
+struct Price {
+    /// The price of the card in United States Dollars (USD).
+    usd: f32,
+    /// The date the price was last fetched
+    fetch_date: NaiveDate,
 }
 
 /// Card supertypes, seen on the left side of the card type, before the dash.
