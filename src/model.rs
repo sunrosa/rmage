@@ -34,6 +34,8 @@ struct Card {
     rarity: Rarity,
     /// (Optional) price of the card.
     price: Option<Price>,
+    /// Whether the card has a foil (appears iridescent) over it or not.
+    is_foil: bool,
 }
 
 impl Card {
