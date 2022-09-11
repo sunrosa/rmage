@@ -1,10 +1,9 @@
 #![cfg(test)]
-
-use crate::model::*;
-
-#[test]
-pub fn card_cmc() {
-    let moldgraf_monstrosity = Card {
+mod model {
+    use crate::model::*;
+    #[test]
+    pub fn card_cmc() {
+        let moldgraf_monstrosity = Card {
         name: "Moldgraf Monstrosity".to_string(),
         supertypes: vec![CardType::Creature],
         subtypes: vec!["Insect".to_string()],
@@ -23,12 +22,12 @@ pub fn card_cmc() {
         is_foil: false
     };
 
-    assert_eq!(moldgraf_monstrosity.cmc(), 7);
-}
+        assert_eq!(moldgraf_monstrosity.cmc(), 7);
+    }
 
-#[test]
-pub fn card_is_in_booster() {
-    let test_card = Card {
+    #[test]
+    pub fn card_is_in_booster() {
+        let test_card = Card {
         name: "TESTCARD".to_string(),
         supertypes: vec![CardType::Creature],
         subtypes: vec!["Insect".to_string()],
@@ -47,11 +46,11 @@ pub fn card_is_in_booster() {
         is_foil: false
     };
 
-    assert_eq!(test_card.is_in_booster(), true);
-}
-#[test]
-pub fn card_is_in_booster_1() {
-    let moldgraf_monstrosity = Card {
+        assert_eq!(test_card.is_in_booster(), true);
+    }
+    #[test]
+    pub fn card_is_in_booster_1() {
+        let moldgraf_monstrosity = Card {
         name: "Moldgraf Monstrosity".to_string(),
         supertypes: vec![CardType::Creature],
         subtypes: vec!["Insect".to_string()],
@@ -70,5 +69,6 @@ pub fn card_is_in_booster_1() {
         is_foil: false
     };
 
-    assert_eq!(moldgraf_monstrosity.is_in_booster(), true);
+        assert_eq!(moldgraf_monstrosity.is_in_booster(), true);
+    }
 }
