@@ -1,7 +1,7 @@
 use chrono::NaiveDate;
 
 /// A Magic the Gathering card.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Card {
     /// The name of the card, as seen above the artwork, to the left of the casting cost.
     pub name: String,
@@ -19,8 +19,10 @@ pub struct Card {
     pub power: i32,
     /// The toughness of a creature card, seen as the right number after the slash after its power. The numbers are located in the bottom right of the card.
     pub toughness: i32,
-    /// The color identities of the card (seen typically in its border).
-    pub colors: Vec<ManaColor>,
+    /// The color of the card (defined by its casting cost, and all color-modifying keywords (example: "devoid")).
+    pub color: Vec<ManaColor>,
+    /// The color identity of the card (defined by all mana symbols found on the casting cost of a card, and all mana symbols found in the rules text of a card).
+    pub color_identity: Vec<ManaColor>,
     /// The mana costs of the card (which makes it a spell). It's seen in the top right of the card.
     pub mana_cost: ManaCost,
     /// The artist of the artwork in the card, seen in the bottom left of the card in very small text, to the right of a brush symbol.
@@ -35,6 +37,8 @@ pub struct Card {
     pub price: Option<Price>,
     /// Whether the card has a foil (appears iridescent) over it or not.
     pub is_foil: bool,
+    /// The formats the card is legal/banned in.
+    pub legalities: Legalities,
 }
 
 impl Card {
@@ -53,7 +57,7 @@ impl Card {
 }
 
 /// A mana cost, as seen in activated abilities and spells (creatures, instants, sorceries, etc).
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct ManaCost {
     /// The number of mana of any color (or colorless) required to cast whatever this cost is attached to.
     pub colorless: i32,
@@ -62,7 +66,7 @@ pub struct ManaCost {
 }
 
 /// A set of Magic the Gathering cards (example: "Portal Second Age (P02)").
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Set {
     /// (Usually) three letter encoding (example: "P02" for Portal Second Age) to represent the set.
     pub code: String,
@@ -75,7 +79,7 @@ pub struct Set {
 }
 
 /// The price of a card.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Price {
     /// The price of the card in United States Dollars (USD).
     pub usd: f32,
@@ -92,6 +96,34 @@ pub struct Deck {
     pub maindeck: Vec<Card>,
     /// The cards in the sideboard.
     pub sideboard: Vec<Card>,
+}
+
+/// Legalities of a card in certain formats.
+#[derive(Debug, Clone)]
+pub struct Legalities {
+    pub standard: Legality,
+    pub pioneer: Legality,
+    pub modern: Legality,
+    pub legacy: Legality,
+    pub vintage: Legality,
+    pub commander: Legality,
+    pub alchemy: Legality,
+    pub explorer: Legality,
+    pub brawl: Legality,
+    pub historic: Legality,
+    pub pauper: Legality,
+    pub penny: Legality,
+}
+
+/// Legality of a card in a format.
+#[derive(Debug, Clone)]
+pub enum Legality {
+    /// Card is legal in the format.
+    Legal,
+    /// Card does not fall into the format's general boundaries, and therefore cannot be played.
+    NotLegal,
+    /// Card is explicitly banned by the format.
+    Banned,
 }
 
 /// Incomplete list of Magic the Gathering formats.
@@ -112,7 +144,7 @@ pub enum Format {
 }
 
 /// Card supertypes, seen on the left side of the card type, before the dash.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum CardType {
     BasicLand,
     Land,
@@ -125,7 +157,7 @@ pub enum CardType {
 }
 
 /// Mana colors seen in Magic the Gathering, often abbreviated as WUBRG; white being W; blue being U; black being B; red being R; and green being G. Colorless is also a color.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum ManaColor {
     White,
     Blue,
@@ -136,7 +168,7 @@ pub enum ManaColor {
 }
 
 /// Card rarity.
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum Rarity {
     Common,
     Uncommon,
