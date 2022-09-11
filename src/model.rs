@@ -83,6 +83,34 @@ pub struct Price {
     pub fetch_date: NaiveDate,
 }
 
+/// A Magic the Gathering deck.
+#[derive(Debug)]
+pub struct Deck {
+    /// (Optional) the name of the deck.
+    pub name: Option<String>,
+    /// The cards in the main deck.
+    pub maindeck: Vec<Card>,
+    /// The cards in the sideboard.
+    pub sideboard: Vec<Card>,
+}
+
+/// Incomplete list of Magic the Gathering formats.
+#[derive(Debug)]
+pub enum Format {
+    Standard,
+    Modern,
+    Pioneer,
+    Historic,
+    Legacy,
+    Vintage,
+    Pauper,
+    Sealed,
+    BoosterDraft,
+    RochesterDraft,
+    Commander,
+    CommanderDuel,
+}
+
 /// Card supertypes, seen on the left side of the card type, before the dash.
 #[derive(Debug)]
 pub enum CardType {
