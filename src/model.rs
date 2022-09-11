@@ -28,10 +28,17 @@ struct Card {
     set: Set,
     /// The index of the card in its set.
     set_number: i32,
-    /// If true, the card is seen in the booster of the set (meaning it's a new card added in the set in question). If false, the card has existed prior to the set, and the card in the set is a reprint. Cards seen in boosters have two numbers (bottom left of the card), separated by a slash, with the left number describing the card number in the set. Reprint cards have only one number in the bottom left of the card.
+    /// If true, the card is seen in the boosters sold for the set. If false, The card is a duplicate reprint of a card in the same set. Cards seen in boosters have two numbers (bottom left of the card), separated by a slash, with the left number describing the card number in the set. Duplicate reprint cards have only one number in the bottom left of the card.
     in_booster: bool,
     /// The rarity of the card, seen as the color of the set symbol on the right side of the type field of the card.
     rarity: Rarity,
+}
+
+impl Card {
+    /// The converted mana cost of the card (not including activated abilities and any rulings).
+    fn cmc(&self) -> i32 {
+        todo!();
+    }
 }
 
 /// A mana cost, as seen in activated abilities and spells (creatures, instants, sorceries, etc).
