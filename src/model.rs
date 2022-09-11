@@ -11,8 +11,8 @@ pub struct Card {
     pub subtypes: Vec<String>,
     /// Whether the card is legendary or not (seen as the leftmost supertype of the card).
     pub is_legendary: bool,
-    /// The rules, activated abilities, triggered abilities, keywords, etc, of the card.
-    pub rules: Vec<String>,
+    /// The activated abilities, triggered abilities, and static abilities (including keywords) of the card, as seen in the oracle ("rules") text of the card.
+    pub abilities: Vec<String>,
     /// The flavor text (in italics) of the card, seen below its rules text.
     pub flavor_text: String,
     /// The power of a creature card, seen as the left number before the slash in front of its toughness. The numbers are located in the bottom right of the card.

@@ -8,7 +8,7 @@ mod model {
             supertypes: vec![CardType::Creature],
             subtypes: vec!["Insect".to_string()],
             is_legendary: false,
-            rules: vec!["Trample".to_string(), "When Moldgraf Monstrosity dies, exile it, then return two creature cards at random from your graveyard to the battlefield.".to_string()],
+            abilities: vec!["Trample".to_string(), "When Moldgraf Monstrosity dies, exile it, then return two creature cards at random from your graveyard to the battlefield.".to_string()],
             flavor_text: "The border between life and death is as thin as a layer of topsoil.".to_string(),
             power: 8,
             toughness: 8,
