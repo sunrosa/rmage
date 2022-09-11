@@ -48,7 +48,7 @@ impl Card {
     }
     /// If true, the card is seen in the boosters sold for the set. If false, The card is a duplicate reprint of a card in the same set. Cards seen in boosters have two numbers (bottom left of the card), separated by a slash, with the left number describing the card number in the set. Duplicate reprint cards have only one number in the bottom left of the card.
     pub fn is_in_booster(&self) -> bool {
-        self.set_number as u32 <= self.set.card_count
+        (self.set_number as u32) <= self.set.card_count
     }
 }
 
