@@ -37,9 +37,13 @@ struct Card {
 }
 
 impl Card {
-    /// The converted mana cost of the card (not including activated abilities and any rulings).
+    /// The converted mana cost to cast the card (not including activated abilities and any rulings).
     fn cmc(&self) -> i32 {
-        todo!();
+        let mut cmc = self.mana_cost.colorless;
+        for color in &self.mana_cost.colored {
+            cmc += color.1;
+        }
+        cmc
     }
 }
 
